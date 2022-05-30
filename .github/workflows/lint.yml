@@ -1,0 +1,29 @@
+name: main
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@main
+        with:
+          go-version: 1.18
+
+      - name: Code checkout
+        uses: actions/checkout@master
+
+      - name: Dependencies
+        run: |
+          make install-golint
+          make install-errcheck
+          make install-golangci-lint
+
+      - name: Run lint
+        env:
+          GO111MODULE: on
+        run: |
+          make check-all
