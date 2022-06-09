@@ -1,8 +1,8 @@
-version: '3'
+version: '3.9'
 
 services:
   pg:
-    image: postgres:14
+    image: postgres:14.3-alpine
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=pass
@@ -13,4 +13,4 @@ services:
       - "5432:5432"
 
 volumes:
-  pgdata:
+  pgdata: {}
